@@ -1,12 +1,11 @@
 /*
  * SensorData.h
  *
- *  Created on: Jul 24, 2023
- *      Author: ndani
+ *
  */
 
-#ifndef SENSORDATA_H
-#define SENSORDATA_H
+#ifndef SENSORDATA_H_
+#define SENSORDATA_H_
 
 #include <ostream>
 
