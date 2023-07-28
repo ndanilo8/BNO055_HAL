@@ -16,7 +16,7 @@ class BNO055_HAL: public Sensor<BNO055Data> {
 
 public:
 
-	BNO055_HAL(I2C_HandleTypeDef *i2cHandle, uint16_t INT_pin);
+	BNO055_HAL(I2C_HandleTypeDef &i2cHandle);
 
 	bool init() override;
 
@@ -284,7 +284,7 @@ public:
 
 private:
 	// I2C handle as a class member variable
-	I2C_HandleTypeDef *i2cHandle;
+	I2C_HandleTypeDef &i2cHandle_;
 
 	BNO055Data sampleImpl() override;
 

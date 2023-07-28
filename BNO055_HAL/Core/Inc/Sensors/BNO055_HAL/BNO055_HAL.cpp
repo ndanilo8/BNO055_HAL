@@ -7,9 +7,9 @@
 
 #include "BNO055_HAL.h"
 
-BNO055_HAL::BNO055_HAL(I2C_HandleTypeDef *i2cHandle) {
-	// Save the I2C handle to the class member variable
-	this->i2cHandle = i2cHandle;
+BNO055_HAL::BNO055_HAL(I2C_HandleTypeDef &i2cHandle) :
+		i2cHandle_(i2cHandle) {
+
 }
 
 bool BNO055_HAL::init() {
@@ -53,8 +53,8 @@ bool BNO055_HAL::init() {
  * LOW LEVEL FUNCTIONS
  * */
 HAL_StatusTypeDef BNO055_HAL::write8(uint8_t regAddr, uint8_t *data) {
-
-	uint8_t status = HAL_I2C_Mem_Write_IT(BNO055_I2C_ADDR, regAddr,
+	// Start the I2C memory write operation using interrupts
+	uint8_t status = HAL_I2C_Mem_Write_IT(&i2cHandle_, BNO055_I2C_ADDR, regAddr,
 	I2C_MEMADD_SIZE_8BIT, data, BNO055_GEN_READ_WRITE_LENGTH);
 
 	// Check for I2C errors and handle them
@@ -75,9 +75,9 @@ HAL_StatusTypeDef BNO055_HAL::write8(uint8_t regAddr, uint8_t *data) {
 }
 
 HAL_StatusTypeDef BNO055_HAL::read8(uint8_t regAddr, uint8_t *data) {
-
-	uint8_t status = HAL_I2C_Mem_Read_IT(BNO055_I2C_ADDR, regAddr,
-			I2C_MEMADD_SIZE_8BIT, data, BNO055_GEN_READ_WRITE_LENGTH);
+	// Start the I2C memory read operation using interrupts
+	uint8_t status = HAL_I2C_Mem_Read_IT(&i2cHandle_, BNO055_I2C_ADDR, regAddr,
+	I2C_MEMADD_SIZE_8BIT, data, BNO055_GEN_READ_WRITE_LENGTH);
 
 	// Check for I2C errors and handle them
 	if (status != HAL_OK) {
@@ -95,22 +95,23 @@ HAL_StatusTypeDef BNO055_HAL::read8(uint8_t regAddr, uint8_t *data) {
 	return HAL_OK;
 }
 
-HAL_StatusTypeDef BNO055_HAL::readLen(uint8_t regAddr, uint8_t *data, uint8_t length){
-
-	uint8_t status = HAL_I2C_Mem_Read_IT(BNO055_I2C_ADDR, regAddr,
-				I2C_MEMADD_SIZE_8BIT, data, length);
+HAL_StatusTypeDef BNO055_HAL::readLen(uint8_t regAddr, uint8_t *data,
+		uint8_t length) {
+	// Start the I2C memory read operation using interrupts
+	uint8_t status = HAL_I2C_Mem_Read_IT(&i2cHandle_, BNO055_I2C_ADDR, regAddr,
+	I2C_MEMADD_SIZE_8BIT, data, length);
 	// Check for I2C errors and handle them
-		if (status != HAL_OK) {
-			// Perform error handling, such as retries, error logging, etc.
-			// For example, you might want to log the error or attempt a retry.
+	if (status != HAL_OK) {
+		// Perform error handling, such as retries, error logging, etc.
+		// For example, you might want to log the error or attempt a retry.
 
-			// uint32_t error = HAL_I2C_GetError(i2cHandle);
+		// uint32_t error = HAL_I2C_GetError(i2cHandle);
 
-			// For simplicity, you can return an error status code here if you want
-			// to indicate the failure to the caller.
-			return status;
-		}
+		// For simplicity, you can return an error status code here if you want
+		// to indicate the failure to the caller.
+		return status;
+	}
 
-		// Return HAL_OK to indicate successful data read.
-		return HAL_OK;
+	// Return HAL_OK to indicate successful data read.
+	return HAL_OK;
 }
