@@ -317,9 +317,7 @@ private:
 #define BNO055_SET_BITSLICE(regvar, bitname, val) \
     ((regvar & ~bitname##_MSK) | ((val << bitname##_POS) & bitname##_MSK))
 
-	/*
-	 *
-	 */
+
 	/*!
 	 *  @brief
 	 *  This API gives data to the given register and
@@ -330,7 +328,7 @@ private:
 	 *
 	 *
 	 *  @return results of bus communication function
-
+*/
 	HAL_StatusTypeDef write8(uint8_t regAddr, uint8_t *data);
 
 	/*!
