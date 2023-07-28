@@ -298,16 +298,16 @@ private:
 	 * */
 
 	/*
-	// Function to get a bitslice from a register value
-	uint8_t get_bitslice(uint8_t regvar, uint8_t mask, uint8_t pos) {
-		return (regvar & mask) >> pos;
-	}
+	 // Function to get a bitslice from a register value
+	 uint8_t get_bitslice(uint8_t regvar, uint8_t mask, uint8_t pos) {
+	 return (regvar & mask) >> pos;
+	 }
 
-	// Function to set a bitslice in a register value
-	uint8_t set_bitslice(uint8_t regvar, uint8_t mask, uint8_t pos,
-			uint8_t val) {
-		return (regvar & ~mask) | ((val << pos) & mask);
-	}
+	 // Function to set a bitslice in a register value
+	 uint8_t set_bitslice(uint8_t regvar, uint8_t mask, uint8_t pos,
+	 uint8_t val) {
+	 return (regvar & ~mask) | ((val << pos) & mask);
+	 }
 	 */
 
 	/* GET AND SET BITSLICE FUNCTIONS    */
@@ -316,7 +316,6 @@ private:
 
 #define BNO055_SET_BITSLICE(regvar, bitname, val) \
     ((regvar & ~bitname##_MSK) | ((val << bitname##_POS) & bitname##_MSK))
-
 
 	/*!
 	 *  @brief
@@ -328,7 +327,7 @@ private:
 	 *
 	 *
 	 *  @return results of bus communication function
-*/
+	 */
 	HAL_StatusTypeDef write8(uint8_t regAddr, uint8_t *data);
 
 	/*!
