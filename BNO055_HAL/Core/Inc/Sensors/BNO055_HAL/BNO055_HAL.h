@@ -328,6 +328,7 @@ private:
 	 *
 	 *  @return results of bus communication function
 	 */
+
 	HAL_StatusTypeDef write8(uint8_t regAddr, uint8_t *data);
 
 	/*!
