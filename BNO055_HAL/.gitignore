@@ -1,5 +1,6 @@
 /.mxproject
 /.project
 /.cproject
+/.settings
 /STM32F411RETX_FLASH.ld
 /STM32F411RETX_RAM.ld
