@@ -9,7 +9,7 @@
 #define BNO055_HAL_H_
 
 #include "BNO055Data.h"
-#include "sensor.h"
+#include "Sensors/Sensor.h"
 #include <stm32f4xx_hal.h>
 
 class BNO055_HAL: public Sensor<BNO055Data> {
@@ -20,8 +20,11 @@ public:
 
 	bool init() override;
 
+	bool selfTest() override;
+
 #define BNO055_I2C_ADDR (0x28 << 1)
 #define  BNO055_GEN_READ_WRITE_LENGTH              ((uint8_t)1)
+// #define  BNO055_SHIFT_EIGHT_BITS                   ((uint8_t)8)
 
 	enum BNO055_Registers : uint8_t {
 		/***************************************************/
@@ -106,9 +109,104 @@ public:
 		ACCEL_INTR_SETTINGS_ADDR = 0X12,
 		GYRO_INTR_SETING_ADDR = 0X17,
 
-
 	/* PAGE1 REGISTERS DEFINITION END*/
 	};
+
+	/*ST_ACCEL register*/
+#define BNO055_SELFTEST_ACCEL_POS                 (0)
+#define BNO055_SELFTEST_ACCEL_MSK                 (0X01)
+#define BNO055_SELFTEST_ACCEL_LEN                 (1)
+	//	#define BNO055_SELFTEST_ACCEL_REG                 BNO055_SELFTEST_RESULT_ADDR
+	/*ST_MAG register*/
+#define BNO055_SELFTEST_MAG_POS                   (1)
+#define BNO055_SELFTEST_MAG_MSK                   (0X02)
+#define BNO055_SELFTEST_MAG_LEN                   (1)
+	//	#define BNO055_SELFTEST_MAG_REG                   BNO055_SELFTEST_RESULT_ADDR
+
+	/*ST_GYRO register*/
+#define BNO055_SELFTEST_GYRO_POS                  (2)
+#define BNO055_SELFTEST_GYRO_MSK                  (0X04)
+#define BNO055_SELFTEST_GYRO_LEN                  (1)
+	//	#define BNO055_SELFTEST_GYRO_REG                  BNO055_SELFTEST_RESULT_ADDR
+
+	/*ST_MCU register*/
+#define BNO055_SELFTEST_MCU_POS                   (3)
+#define BNO055_SELFTEST_MCU_MSK                   (0X08)
+#define BNO055_SELFTEST_MCU_LEN                   (1)
+	//	#define BNO055_SELFTEST_MCU_REG                   BNO055_SELFTEST_RESULT_ADDR
+
+	/*Self Test register*/
+#define BNO055_SELFTEST_POS                       (0)
+#define BNO055_SELFTEST_MSK                       (0X01)
+#define BNO055_SELFTEST_LEN                       (1)
+//#define BNO055_SELFTEST_REG                       BNO055_SYS_TRIGGER_ADDR
+
+	/* System Status registers*/
+#define BNO055_SYS_STAT_CODE_POS                  (0)
+#define BNO055_SYS_STAT_CODE_MSK                  (0XFF)
+#define BNO055_SYS_STAT_CODE_LEN                  (8)
+//#define BNO055_SYS_STAT_CODE_REG                  BNO055_SYS_STAT_ADDR
+
+	/* Temperature register*/
+#define BNO055_TEMP_POS                           (0)
+#define BNO055_TEMP_MSK                           (0xFF)
+#define BNO055_TEMP_LEN                           (8)
+	//#define BNO055_TEMP_REG                           BNO055_TEMP_ADDR
+
+	/* Configuration registers*/
+	/* Accel range configuration register*/
+#define BNO055_ACCEL_RANGE_POS                 (0)
+#define BNO055_ACCEL_RANGE_MSK                 (0X03)
+#define BNO055_ACCEL_RANGE_LEN                 (2)
+//	#define BNO055_ACCEL_RANGE_REG                 BNO055_ACCEL_CONFIG_ADDR
+
+	/* Accel bandwidth configuration register*/
+#define BNO055_ACCEL_BW_POS                    (2)
+#define BNO055_ACCEL_BW_MSK                    (0X1C)
+#define BNO055_ACCEL_BW_LEN                    (3)
+//	#define BNO055_ACCEL_BW_REG                    BNO055_ACCEL_CONFIG_ADDR
+
+	/* Accel power mode configuration register*/
+#define BNO055_ACCEL_POWER_MODE_POS            (5)
+#define BNO055_ACCEL_POWER_MODE_MSK            (0XE0)
+#define BNO055_ACCEL_POWER_MODE_LEN            (3)
+//	#define BNO055_ACCEL_POWER_MODE_REG            BNO055_ACCEL_CONFIG_ADDR
+
+	/* Mag data output rate configuration register*/
+#define BNO055_MAG_DATA_OUTPUT_RATE_POS        (0)
+#define BNO055_MAG_DATA_OUTPUT_RATE_MSK        (0X07)
+#define BNO055_MAG_DATA_OUTPUT_RATE_LEN        (3)
+//	#define BNO055_MAG_DATA_OUTPUT_RATE_REG        BNO055_MAG_CONFIG_ADDR
+
+	/* Mag operation mode configuration register*/
+#define BNO055_MAG_OPERATION_MODE_POS          (3)
+#define BNO055_MAG_OPERATION_MODE_MSK          (0X18)
+#define BNO055_MAG_OPERATION_MODE_LEN          (2)
+//	#define BNO055_MAG_OPERATION_MODE_REG          BNO055_MAG_CONFIG_ADDR
+
+	/* Mag power mode configuration register*/
+#define BNO055_MAG_POWER_MODE_POS              (5)
+#define BNO055_MAG_POWER_MODE_MSK              (0X60)
+#define BNO055_MAG_POWER_MODE_LEN              (2)
+//	#define BNO055_MAG_POWER_MODE_REG              BNO055_MAG_CONFIG_ADDR
+
+	/* Gyro range configuration register*/
+#define BNO055_GYRO_RANGE_POS                  (0)
+#define BNO055_GYRO_RANGE_MSK                  (0X07)
+#define BNO055_GYRO_RANGE_LEN                  (3)
+//	#define BNO055_GYRO_RANGE_REG                  BNO055_GYRO_CONFIG_ADDR
+
+	/* Gyro bandwidth configuration register*/
+#define BNO055_GYRO_BW_POS                     (3)
+#define BNO055_GYRO_BW_MSK                     (0X38)
+#define BNO055_GYRO_BW_LEN                     (3)
+//	#define BNO055_GYRO_BW_REG                     BNO055_GYRO_CONFIG_ADDR
+
+	/* Gyro power mode configuration register*/
+#define BNO055_GYRO_POWER_MODE_POS             (0)
+#define BNO055_GYRO_POWER_MODE_MSK             (0X07)
+#define BNO055_GYRO_POWER_MODE_LEN             (3)
+//	#define BNO055_GYRO_POWER_MODE_REG             BNO055_GYRO_MODE_CONFIG_ADDR
 
 	/* Page ID */
 	enum BNO055_PAGE_ID : uint8_t {
@@ -123,7 +221,7 @@ public:
 	};
 
 	/* Power mode*/
-	enum BNO055_PWD_MODE : uint8_t {
+	enum BNO055_PWR_MODE : uint8_t {
 
 		POWER_MODE_NORMAL = 0X00,
 		POWER_MODE_LOWPOWER = 0X01,
@@ -250,7 +348,6 @@ public:
 		REMAP_AXIS_POSITIVE = 0X00, REMAP_AXIS_NEGATIVE = 0X01
 
 	};
-
 	/*
 	 union BNO055RawData {
 	 struct __attribute__((packed)) BNO055RawDataBits {
@@ -261,25 +358,69 @@ public:
 	 int16_t gyroX;
 	 int16_t gyroY;
 	 int16_t gyroZ;
-	 uint8_t magSt1;
 	 int16_t magX;
 	 int16_t magY;
 	 int16_t magZ;
 	 } bits;
-	 int8_t bytes[21];
-	 };
-	 */
+	 int8_t bytes[20];
+	 };*/
 
 private:
 	// I2C handle as a class member variable
-	I2C_HandleTypeDef &i2cHandle_;
+	I2C_HandleTypeDef &_i2cHandle;
+	// Whether the sensor has been initialized
+	bool initialized = false;
+
+	struct BNO055Config_t {
+
+			uint8_t chipID;
+			BNO055_PAGE_ID pageID;
+			BNO055_OPR_MODE oprMode;
+			uint8_t accelRevID;
+			uint8_t magRevID;
+			uint8_t gyroRevID;
+			uint8_t blRevID;
+			uint8_t swRevID;
+
+		} _deviceInfo;
+
+		struct BNO055SelfTest {
+
+			uint8_t mcuState;
+			uint8_t gyroState;
+			uint8_t magState;
+			uint8_t accelState;
+
+		} _selfTestResult;
+
+		struct BNO055SensorScales {
+			uint16_t accel = 100.0; // meters per second
+			uint16_t temp = 1.0; // Celsius
+			//uint16_t gyro = 16.0; // DPS Degrees per sec
+			uint16_t gyro = 900.0; // RPS Radians per sec
+			uint16_t mag = 16.0;
+
+		} _sensorScales;
+
+	/* GET AND SET BITSLICE FUNCTIONS    */
+#define BNO055_GET_BITSLICE(regvar, bitname) \
+    ((regvar & bitname##_MSK) >> bitname##_POS)
+
+#define BNO055_SET_BITSLICE(regvar, bitname, val) \
+    ((regvar & ~bitname##_MSK) | ((val << bitname##_POS) & bitname##_MSK))
 
 	BNO055Data sampleImpl() override;
 
 	void resetDevice();
 
-	// Whether the sensor has been initialized
-	bool initialized = false;
+	bool setPage(BNO055_PAGE_ID page);
+
+	bool setOperationMode(BNO055_OPR_MODE mode);
+
+	bool setExternalCrystralUse(bool state);
+
+	bool setAccelPWRMode(BNO055_ACCEL_PWR_MODE powerMode);
+
 
 	/*
 	 * LOW LEVEL FUNCTIONS
@@ -298,13 +439,6 @@ private:
 	 }
 	 */
 
-	/* GET AND SET BITSLICE FUNCTIONS    */
-#define BNO055_GET_BITSLICE(regvar, bitname) \
-    ((regvar & bitname##_MSK) >> bitname##_POS)
-
-#define BNO055_SET_BITSLICE(regvar, bitname, val) \
-    ((regvar & ~bitname##_MSK) | ((val << bitname##_POS) & bitname##_MSK))
-
 	/*!
 	 *  @brief
 	 *  This API gives data to the given register and
@@ -317,23 +451,8 @@ private:
 	 *  @return results of bus communication function
 	 */
 
-	HAL_StatusTypeDef write8(uint8_t regAddr, uint8_t *data);
+	HAL_StatusTypeDef write8(uint8_t regAddr, uint8_t data);
 
-	/*!
-	 *  @brief This API reads the data from
-	 *  the given register address
-	 *
-	 *  @param addr_u8 : Address of the register
-	 *  @param data_u8 : address of the variable,
-	 *  read value will be kept
-	 *
-	 *
-	 *
-	 *  @return results of bus communication function
-	 *  @retval 0 -> BNO055_SUCCESS
-	 *  @retval 1 -> BNO055_ERROR
-	 *
-	 */
 	HAL_StatusTypeDef read8(uint8_t regAddr, uint8_t *data);
 
 	HAL_StatusTypeDef readLen(uint8_t regAddr, uint8_t *data, uint8_t length);

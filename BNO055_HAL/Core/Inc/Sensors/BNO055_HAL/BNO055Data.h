@@ -7,6 +7,7 @@
 
 
 #pragma once
+#include "Sensors/SensorData.h"
 
 
 
