@@ -1,8 +1,8 @@
-BNO055_HAL/.settings
-BNO055_HAL/debug
-BNO055_HAL/Drivers
-BNO055_HAL/Middlewares
-BNO055_HAL/USB_DEVICE
+BNO055_HAL/.settings/*
+BNO055_HAL/debug/*
+BNO055_HAL/Drivers/*
+BNO055_HAL/Middlewares/*
+BNO055_HAL/USB_DEVICE/*
 BNO055_HAL/.cproject
 BNO055_HAL/.mxproject
 BNO055_HAL/.project
