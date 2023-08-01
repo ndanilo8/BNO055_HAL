@@ -9,3 +9,5 @@
 /Debug/**
 /.settings/**
 /Core/Startup/**
+/Core/Inc/stm32f4xx_hal_conf.h
+/Core/Inc/stm32f4xx_it.h
