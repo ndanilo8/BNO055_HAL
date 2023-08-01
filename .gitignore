@@ -1,5 +1,5 @@
 /BNO055_HAL/.settings/*
-/BNO055_HAL/Debug/
+BNO055_HAL/Debug/
 /BNO055_HAL/Drivers/*
 /BNO055_HAL/Middlewares/*
 /BNO055_HAL/USB_DEVICE/*
