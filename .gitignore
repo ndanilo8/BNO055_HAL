@@ -1,6 +1,6 @@
 /BNO055_HAL/.settings/*
 
-**/Debug
+/BNO055_HAL/Debug
 
 /BNO055_HAL/Drivers/*
 
