@@ -454,6 +454,10 @@ private:
 #define BNO055_SET_BITSLICE(regvar, bitname, val) \
     ((regvar & ~bitname##_MSK) | ((val << bitname##_POS) & bitname##_MSK))
 
+#define CONVERT_RAW_DATA(buffer, index, scale) \
+    (uint16_t)(((buffer[(index) + 1] << 8) | buffer[(index)]) / (scale))
+
+
 	BNO055Data sampleImpl() override;
 
 	bool resetDevice();
