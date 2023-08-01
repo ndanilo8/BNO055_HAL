@@ -1,0 +1,10 @@
+/.settings
+/debug
+/Drivers
+/Middlewares
+/USB_DEVICE
+/.cproject
+.mxproject
+/.project
+/STM32F411RETX_FLASH.ld
+/STM32F411RETX_RAM.ld
