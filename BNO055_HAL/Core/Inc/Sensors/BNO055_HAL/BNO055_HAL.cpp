@@ -5,6 +5,8 @@
  *      Author: ndanilo8
  */
 
+// in have to organize the return types of the functions
+
 #include "BNO055_HAL.h"
 // #include "TimestampTimer.h"
 

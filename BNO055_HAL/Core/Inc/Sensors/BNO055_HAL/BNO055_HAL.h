@@ -5,6 +5,8 @@
  *      Author: ndanilo8
  */
 
+// in have to organize the return types of the functions
+
 #ifndef BNO055_HAL_H_
 #define BNO055_HAL_H_
 
