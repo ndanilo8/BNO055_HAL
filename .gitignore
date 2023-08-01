@@ -1,5 +1,5 @@
 /BNO055_HAL/.settings/*
-BNO055_HAL/Debug/
+**/Debug
 /BNO055_HAL/Drivers/*
 /BNO055_HAL/Middlewares/*
 /BNO055_HAL/USB_DEVICE/*
@@ -8,4 +8,3 @@ BNO055_HAL/Debug/
 /BNO055_HAL/.project
 /BNO055_HAL/STM32F411RETX_FLASH.ld
 /BNO055_HAL/STM32F411RETX_RAM.ld
-/BNO055_HAL/Core/Startup/*
