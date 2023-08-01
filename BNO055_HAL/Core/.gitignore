@@ -1,4 +1,5 @@
 /Startup/
 
-/Src/
-/!Src/main.c
+/Src/*
+!Src/main.c
+# /!Src/main.c
