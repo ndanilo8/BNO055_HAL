@@ -25,9 +25,9 @@ enum SensorErrors : uint8_t
     SELF_TEST_FAIL     = 5,
     BUS_FAULT          = 6,
     NO_NEW_DATA        = 7,  // no new data available from the sensor
-    INVALID_FIFO_INDEX = 8,
-    DMA_ERROR          = 9,
-    END_OF_BASE_ERRORS = 10  // used to extend this enum
+    // INVALID_FIFO_INDEX = 8,
+    DMA_ERROR          = 8,
+    //END_OF_BASE_ERRORS = 9  // used to extend this enum
 };
 /**
  * @brief Structure to handle sensor data timestamp.
